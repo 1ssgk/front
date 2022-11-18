@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+ //.get('localhost/api/test',"dd",{ headers: { 'authtoken': token } })
+ console.log('이거 맞지?')
+  axios
+    .get('api/test',"dd",{})
+    .then((response) => {
+        console.log('성공인가?')
+    })
+    .catch(err =>{
+        console.log(err)
+        return false;
+    });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <h1>hi13</h1>
   );
 }
 
