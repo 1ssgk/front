@@ -1,12 +1,14 @@
-import { createProxyMiddleware } from 'http-proxy-middleware';
+const {createProxyMiddleware} = require('http-proxy-middleware');
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default function(app) {
+module.exports = (app) => {
     app.use(
-        '/api',
-        createProxyMiddleware({
-          target: 'http://localhost:8085', // 비지니스 서버 URL 설정
-          changeOrigin: true,
-        })
-      );
+        createProxyMiddleware('/api', {
+            target: 'http://localhost:8085', /* /api 요청 시 서버 URL 설정 */
+            secure: false,
+            changeOrigin: true, /*  */
+            pathRewrite: {  /* api -> '' 빈값으로 치환 */
+                '^/api': ''
+              }
+        }
+    ));
 }
